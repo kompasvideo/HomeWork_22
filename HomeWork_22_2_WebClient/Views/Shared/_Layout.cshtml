@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HomeWork_22_2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row g-0">        
+            <div class="col-9 text-center alert-secondary">
+                <h2 class="">
+                    Записная книжка
+                </h2>
+            </div>
+            <div class="col-2 text-center alert-secondary">
+ @if ((bool)ViewData["logIn"])
+                    {
+                        <div>Пользователь:</div>
+                        <div>@ViewData["UserName"]</div>
+                    }
+                    else
+                    {
+                        <h2>&nbsp;</h2>
+                    }
+            </div>
+            <div class="col-1 alert-secondary">
+                <div class="">
+  @if ((bool)ViewData["logIn"])
+ {
+                    <a asp-controller="Account" asp-action="Logout"
+       class="btn btn-primary">Выйти</a>
+ }
+ else
+ {
+                    <a asp-controller="Account" asp-action="Login"
+       class="btn btn-primary">Войти</a>
+ }
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

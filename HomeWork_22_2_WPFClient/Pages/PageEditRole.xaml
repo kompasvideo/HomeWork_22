@@ -1,0 +1,103 @@
+﻿<Page x:Class="HomeWork_22_2_WPFClient.Pages.PageEditRole"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:local="clr-namespace:HomeWork_22_2_WPFClient.Pages"
+      mc:Ignorable="d" 
+      xmlns:viewmodel="clr-namespace:HomeWork_22_2_WPFClient.ViewModel"
+      DataContext="{Binding pageEditRole, Source={StaticResource ViewModelLocator}}"
+      >
+
+    <Page.Resources>
+        <viewmodel:PageEditRoleViewModel x:Key="page"/>
+    </Page.Resources>
+    <DockPanel Background="#FF1F1E1B">
+        <Button Content="Вернуться назад" Command="{Binding ButtonReturnClickCommand, Source={StaticResource page}}" 
+                HorizontalAlignment="Left" Width="100" DockPanel.Dock="Top" Foreground="{StaticResource bTextColor}"/>
+        <GroupBox Header="Редактировать роль" Width="280">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  DataContext="{Binding myIdentityRole}">
+                <TextBlock Text="Имя роли:" Margin="10,10,10,0" Foreground="{StaticResource tbTextColor}"/>
+                <TextBox Text="{Binding Name}" IsReadOnly="True" Margin="10,0,10,0" Foreground="{StaticResource tbTextColor}"/>
+                <TextBlock Text="Добавить пользователей к роли" Margin="10,20,10,0" Foreground="{StaticResource tbTextColor}"/>
+                <ListView DataContext="{StaticResource page}" ItemsSource="{Binding AddUsers}" x:Name="lvItems" 
+                          IsSynchronizedWithCurrentItem="True"  Margin="10,0,10,0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Имя" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="bDel" Height="27" Width="95">
+                                            <Button.Content>
+                                                <StackPanel>
+                                                    <Label Content="Добавить" Height="27" Margin="0" Padding="0"/>
+                                                    <TextBlock x:Name="tb" Text="{Binding}">
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Button.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction
+                                                Command="{Binding Source={StaticResource page}, Path=ButtonAddClickCommand, UpdateSourceTrigger=PropertyChanged}"
+                                                CommandParameter="{Binding ElementName=tb, Path=Text}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBlock Text="Удалить пользователей из роли" Margin="10,20,10,0" Foreground="{StaticResource tbTextColor}"/>
+                <ListView DataContext="{StaticResource page}" ItemsSource="{Binding DelUsers}" Margin="10,0,10,0"
+                          x:Name="lvItems2" IsSynchronizedWithCurrentItem="True">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Имя" Width="110">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="bDel" Height="27" Width="95">
+                                            <Button.Content>
+                                                <StackPanel>
+                                                    <Label Content="Удалить" Height="27" Margin="0" Padding="0"/>
+                                                    <TextBlock x:Name="tb" Text="{Binding}">
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </Button.Content>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction
+                                                Command="{Binding Source={StaticResource page}, Path=ButtonDelClickCommand, UpdateSourceTrigger=PropertyChanged}"
+                                                CommandParameter="{Binding ElementName=tb, Path=Text}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button Content="Редактировать роль"  Margin="30,20,30,20" Foreground="{StaticResource bTextColor}"
+                        Command="{Binding ButtonEditRoleClickCommand, Source={StaticResource page}}" Cursor="Hand"/>
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</Page>
+

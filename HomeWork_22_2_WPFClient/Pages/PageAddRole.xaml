@@ -1,0 +1,26 @@
+﻿<Page x:Class="HomeWork_22_2_WPFClient.Pages.PageAddRole"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HomeWork_22_2_WPFClient.Pages"
+      mc:Ignorable="d" 
+      xmlns:viewmodel="clr-namespace:HomeWork_22_2_WPFClient.ViewModel"
+      DataContext="{Binding pageAddRole, Source={StaticResource ViewModelLocator}}"
+      >
+    <Page.Resources>
+        <viewmodel:PageAddRoleViewModel x:Key="pageAddRole"/>
+    </Page.Resources>
+    <DockPanel Background="#FF1F1E1B" Cursor="Hand">
+        <Button Content="Вернуться назад" Command="{Binding ButtonReturnClickCommand, Source={StaticResource pageAddRole}}" 
+                HorizontalAlignment="Left" Width="100" DockPanel.Dock="Top" Foreground="{StaticResource bTextColor}"/>
+        <GroupBox Header="Добавить роль" Width="230" Height="160">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Имя:" Margin="10,10,10,0" Foreground="{StaticResource tbTextColor}"/>
+                <TextBox Text="{Binding UserName,Source={StaticResource pageAddRole}}" Width="200" Foreground="{StaticResource tbTextColor}" Cursor="IBeam"/>
+                <Button Content="Добавить роль" Margin="30,20,30,20" Foreground="{StaticResource bTextColor}"
+                        Command="{Binding ButtonAddRoleClickCommand, Source={StaticResource pageAddRole}}" Width="139"/>
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</Page>

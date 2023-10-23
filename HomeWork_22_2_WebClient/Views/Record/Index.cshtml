@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Записная книжка";
+}
+@model PhoneBook
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">
+        <h5>
+            @Model.LastName @Model.FirstName @Model.ThreeName
+        </h5>
+        <div>
+            @Model.Description
+        </div>
+        <div>
+            @Model.NumberPhone
+        </div>
+        <div>
+            @Model.Address
+        </div>
+    </div>
+</div>

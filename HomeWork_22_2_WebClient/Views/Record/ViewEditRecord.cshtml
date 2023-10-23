@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Записная книжка";
+}
+@model PhoneBook
+    <div class="row">
+        <div class="col-3">&nbsp;</div>
+        <div class="card card-outline-primary text-center border-primary col-6 pad">
+            <div class="card-header bg-faded bg-primary text-white">
+                Изменить запись
+            </div>
+            <div class="card-body">
+                <form asp-action="EditRecord"
+                      asp-controller="PhoneBook" method="post">
+                    <input type="hidden" name="id"
+                           value="@Model.PhoneBookID" />
+                    <input type="text" name="LastName" class="form-control"
+                           value="@Model.LastName" />
+                    <input type="text" name="FirstName" class="form-control"
+                           value="@Model.FirstName" />
+                    <input type="text" name="ThreeName" class="form-control"
+                           value="@Model.ThreeName" />
+                    <input type="text" name="NumberPhone" class="form-control"
+                           value="@Model.NumberPhone" />
+                    <input type="text" name="Address" class="form-control"
+                           value="@Model.Address" />
+                    <input type="text" name="Description" class="form-control"
+                           value="@Model.Description" />
+                    <button type="submit" class="d-inline-flex btn btn-block btn-primary">
+                        Изменить запись
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-3">&nbsp;</div>
+    </div>

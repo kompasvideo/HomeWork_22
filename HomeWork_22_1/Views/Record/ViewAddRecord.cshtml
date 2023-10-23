@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Записная книжка";
+}
+<div class="row">
+    <div class="col-3">&nbsp;</div>
+    <div class="card card-outline-primary text-center border-primary col-6 pad">
+        <div class="card-header bg-faded p-1 bg-primary text-white">
+            Добавить запись
+        </div>
+        <div class="card-body">
+            <form asp-action="AddRecord"
+                  asp-controller="PhoneBook" method="post">
+                <input type="text" name="LastName" class="form-control" placeholder="Фамилия"
+                       value="" />
+                <input type="text" name="FirstName" class="form-control" placeholder="Имя"
+                       value="" />
+                <input type="text" name="ThreeName" class="form-control" placeholder="Отчество"
+                       value="" />
+                <input type="text" name="NumberPhone" class="form-control" placeholder="Номер телефона"
+                       value="" />
+                <input type="text" name="Address" class="form-control" placeholder="Адрес"
+                       value="" />
+                <input type="text" name="Description" class="form-control" placeholder="Должность"
+                       value="" />
+                <button type="submit" class="d-inline-flex btn btn-block btn-primary">
+                    Добавить запись
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-3">&nbsp;</div>
+</div>

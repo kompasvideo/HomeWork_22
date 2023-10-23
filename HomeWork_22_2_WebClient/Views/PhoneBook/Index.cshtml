@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Записная книжка";
+}
+@model IEnumerable<PhoneBook>
+
+<div class="row m-1 p-1">
+    <div class="col-2">
+            <form asp-action="ViewAddRecord" asp-controller="Record" method="post">
+                <button type="submit" class="btn btn-block btn-primary">
+                    Добавить запись
+                </button>
+            </form>
+    </div>
+    <div class="col-10">
+        @foreach (var p in Model)
+        {
+            <div class="card card-outline-primary m-1 p-1">
+                <div>
+                    <form id="@p.PhoneBookID" asp-action="ViewRecord"
+                          asp-controller="Record" method="post" class="d-inline-flex">
+                        <input type="hidden" name="id"
+                               value="@p.PhoneBookID" />
+                        <button type="submit"
+                                class="btn btn-secondary btn-sm">
+                            @p.PhoneBookID
+                        </button>
+                    </form>
+                    <div class="d-inline-flex">
+                        @p.LastName @p.FirstName @p.ThreeName
+                    </div>
+                    <form id="@p.PhoneBookID" asp-action="DeleteRecord"
+                          asp-controller="PhoneBook" method="post" class="d-inline-flex pull-right" style="float:right">
+                        <input type="hidden" name="id"
+                               value="@p.PhoneBookID" />
+                        <button type="submit"
+                                class="btn btn-danger btn-sm">
+                            Удалить
+                        </button>
+                    </form>
+                    <form id="@p.PhoneBookID" asp-action="ViewEditRecord"
+                          asp-controller="Record" method="post" class="d-inline-flex pull-right" style="float:right">
+                        <input type="hidden" name="id" value="@p.PhoneBookID"/>
+                        <input type="hidden" name="LastName" value="@p.LastName"/>
+                        <input type="hidden" name="FirstName" value="@p.FirstName"/>
+                        <input type="hidden" name="ThreeName" value="@p.ThreeName"/>
+                        <input type="hidden" name="NumberPhone" value="@p.NumberPhone"/>
+                        <input type="hidden" name="Address" value="@p.Address"/>
+                        <input type="hidden" name="Description" value="@p.Description"/>
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Редактировать
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
